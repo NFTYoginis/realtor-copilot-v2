@@ -23,7 +23,7 @@ Changes to anything outside `case-studies/` are improvements to the universal ar
 
 Before opening a PR for a structural change:
 
-1. Test it against at least two case studies (Jerusalem + Novato are the originals; Khao Lak is the resort/foreign-buyer counterpoint).
+1. Test it against at least two case studies. The four are: Jerusalem (international diaspora + bilingual), Novato (universal-no-foreign-hook), Khao Lak (resort/foreign-dominant), and Lisbon (mainstream urban European).
 2. Note in the PR which case studies you tested against and what changed in the output.
 3. Keep changes surgical. The architecture is intentionally lean — v2 sits at ~3,400 lines across ~22 specialist files. Additions should earn their token cost.
 
