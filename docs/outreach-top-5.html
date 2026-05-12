@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top-5 Outreach Package — Realtor Copilot v2</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --surface: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #e6e2d8;
+    --accent: #b5731a;
+    --accent-soft: #fdf3e2;
+    --code-bg: #f5f1e8;
+    --code-ink: #1a1a1a;
+    --tag-bg: #ecead8;
+    --ok: #2f7a3c;
+    --warn: #a35a00;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header.top {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  header.top h1 {
+    font-size: 28px;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  header.top p.lede {
+    color: var(--muted);
+    margin: 0;
+    font-size: 15px;
+  }
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 24px 0 36px;
+    box-shadow: var(--shadow);
+  }
+  .toc h2 {
+    margin: 0 0 12px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 22px;
+    columns: 2;
+    column-gap: 28px;
+  }
+  .toc ol li { padding: 3px 0; }
+  .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px dashed var(--rule); }
+  .toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  section.pitch, section.block {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+  }
+  section.pitch h2 {
+    font-size: 22px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  section.block h2 {
+    font-size: 18px;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .pitch-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pitch-meta strong { color: var(--ink); font-weight: 600; }
+  .pitch-meta a { color: var(--accent); text-decoration: none; }
+  .pitch-meta a:hover { text-decoration: underline; }
+
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--ink);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  .tag.accent { background: var(--accent-soft); color: var(--accent); }
+
+  .field-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 18px 0 8px;
+    font-weight: 600;
+  }
+  .copy-wrap {
+    position: relative;
+  }
+  .copy-btn {
+    background: var(--ink);
+    color: #fff;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 120ms ease, transform 120ms ease;
+  }
+  .copy-btn:hover { background: var(--accent); }
+  .copy-btn:active { transform: translateY(1px); }
+  .copy-btn.copied { background: var(--ok); }
+
+  pre.code {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-family: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 13.5px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    margin: 0;
+  }
+  pre.code.short { font-size: 14px; }
+
+  .placeholders {
+    background: var(--accent-soft);
+    border: 1px solid #f1d9a8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 0 0 22px;
+    font-size: 14px;
+  }
+  .placeholders strong { color: var(--accent); }
+  .placeholders code {
+    background: #fff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid #f1d9a8;
+    font-size: 13px;
+  }
+
+  table.tracking, table.order {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 14px;
+  }
+  table.tracking th, table.tracking td,
+  table.order th, table.order td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  table.tracking th, table.order th {
+    background: var(--code-bg);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  table.order td:first-child {
+    font-weight: 700;
+    width: 30px;
+  }
+
+  ul.rules { padding-left: 22px; margin: 8px 0; }
+  ul.rules li { margin-bottom: 8px; }
+
+  .callout {
+    background: #fff8e6;
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout strong { color: var(--accent); }
+
+  .small { font-size: 13px; color: var(--muted); }
+  hr.divider { border: 0; border-top: 1px solid var(--rule); margin: 28px 0; }
+
+  a.outlink { color: var(--accent); }
+
+  /* Print friendliness — strip color, hide buttons */
+  @media print {
+    body { background: #fff; }
+    .copy-btn, .toc { display: none; }
+    section.pitch, section.block { box-shadow: none; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <h1>Top-5 Outreach Package — Ready to Send</h1>
+  <p class="lede">Five outlets, ranked by conversion likelihood × audience-fit. Every pitch is paste-and-send. Replace four placeholders globally and you're ~10 minutes from done.</p>
+</header>
+
+<div class="placeholders">
+  <strong>Pre-flight (do once, ~30 seconds):</strong> Replace these four placeholders globally before sending.
+  <div style="margin-top:8px;">
+    <code>[Your name]</code> &nbsp;
+    <code>[Your email]</code> &nbsp;
+    <code>[Your phone]</code> <span class="small">(optional)</span> &nbsp;
+    <code>[Your X / LinkedIn handle]</code> <span class="small">(optional)</span>
+  </div>
+</div>
+
+<nav class="toc">
+  <h2>Jump to</h2>
+  <ol>
+    <li><a href="#order">Send order &amp; timing</a></li>
+    <li><a href="#hn">1. Hacker News (Show HN)</a></li>
+    <li><a href="#lazy">2. The Lazy Agent</a></li>
+    <li><a href="#rismedia">3. RISMedia</a></li>
+    <li><a href="#housingwire">4. HousingWire</a></li>
+    <li><a href="#inman">5. Inman</a></li>
+    <li><a href="#tracking">Tracking sheet</a></li>
+    <li><a href="#rules">Sanity rules</a></li>
+  </ol>
+</nav>
+
+<section class="block" id="order">
+  <h2>Recommended send order &amp; timing</h2>
+  <table class="order">
+    <thead>
+      <tr><th>#</th><th>Outlet</th><th>Send when</th><th>Reason</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Hacker News (Show HN)</strong></td>
+        <td>Today, 8–10am ET on a Tue/Wed/Thu</td>
+        <td>Front-page algorithm rewards early weekday posts. Drives GitHub stars + makes other pitches feel "alive" when editors check the repo.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>The Lazy Agent</strong></td>
+        <td>Today</td>
+        <td>One-person shop (Tommy Mutchler). Quick reply if interested. Closest audience-fit of all 5.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>RISMedia</strong></td>
+        <td>This week</td>
+        <td>General submissions queue, receptive to free/open-source. Multiple senior editors.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>HousingWire</strong></td>
+        <td>This week</td>
+        <td>Business / distribution-model angle works without cold-test data.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Inman</strong></td>
+        <td>Best with cold-test data in hand (1–2 weeks) — pitch ready to send now if you'd rather not wait.</td>
+        <td>Inman's bar is highest. Real-agent transcripts materially raise conversion probability vs. simulated tests.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== HN ===================== -->
+<section class="pitch" id="hn">
+  <h2>Send 1 &nbsp;<span class="tag accent">Hacker News — Show HN</span></h2>
+  <div class="pitch-meta">
+    <span><strong>Action:</strong> post directly at <a href="https://news.ycombinator.com/submit" target="_blank" rel="noopener">news.ycombinator.com/submit</a></span>
+    <span><strong>Best window:</strong> Tue/Wed/Thu, 8–10am ET</span>
+  </div>
+
+  <div class="field-label">URL field
+    <button class="copy-btn" data-copy-target="hn-url">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code short" id="hn-url">https://github.com/NFTYoginis/realtor-copilot-v2</pre>
+  </div>
+
+  <div class="field-label">Title field <span class="small" style="text-transform:none;letter-spacing:0;font-weight:400;">(max ~80 chars, no marketing language)</span>
+    <button class="copy-btn" data-copy-target="hn-title">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code short" id="hn-title">Show HN: Realtor Copilot v2 — markdown files that turn Claude into a real-estate specialist</pre>
+  </div>
+
+  <div class="field-label">First-comment context <span class="small" style="text-transform:none;letter-spacing:0;font-weight:400;">(post immediately after submitting)</span>
+    <button class="copy-btn" data-copy-target="hn-comment">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code" id="hn-comment">Author here. I worked in residential real estate before building this. v1 shipped earlier
+this month with three jobs (listing copy, buyer-property fit ranking, pricing memos with
+comps); v2 expands to five and adds cross-job memory via a showing-notes flow.
+
+The architecture is intentionally narrow — folder of markdown files, no install, no API
+key, drops into a Claude Project. About 20 min to fill in six files describing your local
+market. Four populated case-study markets ship with it (Jerusalem, Novato/Marin, Khao Lak,
+Lisbon) so you can see the format and use them as templates.
+
+The discipline is the moat. The copilot will redirect requests for marketing flyers,
+client-facing email drafts, or mass cold outreach. Five jobs only.
+
+Calling out the architecture pattern (Interpretable Context Methodology — folders as
+architecture) because I think it's portable to other professional copilots beyond real
+estate. Happy to discuss in comments.
+
+v1 (for reference): https://github.com/NFTYoginis/realtor-copilot
+v2: https://github.com/NFTYoginis/realtor-copilot-v2</pre>
+  </div>
+
+  <div class="callout">
+    <strong>HN tips:</strong>
+    <ul class="rules" style="margin-top:6px;">
+      <li>Don't ask for upvotes anywhere (instant penalty).</li>
+      <li>Reply to every substantive comment in the first 2 hours — engagement matters more than upvotes for ranking.</li>
+      <li>If it stalls below the front page, don't repost; HN penalizes that.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== Lazy Agent ===================== -->
+<section class="pitch" id="lazy">
+  <h2>Send 2 &nbsp;<span class="tag accent">The Lazy Agent</span></h2>
+  <div class="pitch-meta">
+    <span><strong>Target:</strong> Tommy Mutchler, founder &amp; sole editor</span>
+    <span><strong>Email:</strong> <a href="mailto:Tommy@TheLazyAgent.com">Tommy@TheLazyAgent.com</a></span>
+  </div>
+
+  <div class="field-label">Subject
+    <button class="copy-btn" data-copy-target="lazy-subject">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code short" id="lazy-subject">Free open-source AI specialist for agents — five jobs, no install, MIT</pre>
+  </div>
+
+  <div class="field-label">Body
+    <button class="copy-btn" data-copy-target="lazy-body">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code" id="lazy-body">Hi Tommy,
+
+Quick pitch in case it's a fit for The Lazy Agent. I'm a former residential real-estate
+practitioner who shipped a free, open-source AI tool for working agents this month.
+
+Realtor Copilot is a folder of structured markdown files that drops into a Claude Project.
+About 20 minutes to fill in six files describing your local market. The copilot then handles
+five jobs:
+
+- Listing descriptions (audience-tuned, bilingual where needed)
+- Buyer–property fit ranking with reasoned friction
+- Pricing memos with defensible comp bands
+- Showing notes from dictation (with cross-job memory — notes you capture today get cited
+  in matching jobs next week)
+- Local-services lookup from the agent's own curated vendor list (never invents)
+
+Free. No install. No API key. No monthly fee beyond an existing Claude subscription.
+MIT licensed. Four populated case-study markets ship with it: Jerusalem, Novato/Marin,
+Khao Lak, Lisbon — the agent can use any as a template.
+
+The wedge against raw ChatGPT is buyer–property fit ranking with reasoned friction (white
+space in the competitive landscape) and pricing memos with comp logic an agent can defend
+on a listing presentation.
+
+Repo: https://github.com/NFTYoginis/realtor-copilot-v2
+
+If you'd like a quick demo or a guest spot on the podcast, I'm happy to set it up. Or if
+the affiliate path is more your speed, that works too — let me know what's useful.
+
+Best,
+[Your name]
+[Your email]
+[Your X / LinkedIn handle]</pre>
+  </div>
+</section>
+
+<!-- ===================== RISMedia ===================== -->
+<section class="pitch" id="rismedia">
+  <h2>Send 3 &nbsp;<span class="tag accent">RISMedia</span></h2>
+  <div class="pitch-meta">
+    <span><strong>Primary:</strong> Maria Patterson, EVP &amp; Executive Editor</span>
+    <span><strong>Email:</strong> <a href="mailto:maria@rismedia.com">maria@rismedia.com</a></span>
+    <span><strong>CC:</strong> <a href="mailto:online@rismedia.com">online@rismedia.com</a></span>
+  </div>
+
+  <div class="field-label">Subject
+    <button class="copy-btn" data-copy-target="ris-subject">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code short" id="ris-subject">Open-source AI specialist for working agents — free, no install, ships with four populated regions</pre>
+  </div>
+
+  <div class="field-label">Body
+    <button class="copy-btn" data-copy-target="ris-body">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code" id="ris-body">Hi Maria,
+
+Following RISMedia's coverage of "Real Estate's AI Hype: Where It Gets It Right and
+Wrong" — and given the December Tech Showdown — I wanted to share an open-source tool
+that engages directly with the gap your reporting has described. It's free, MIT-licensed,
+and built by a former residential practitioner.
+
+Realtor Copilot is a folder of markdown files that turns a Claude Project into a
+specialist for the agent's local market. Five jobs: listings, buyer-fit ranking, pricing
+with comps, showing notes from dictation, and local-services lookup. Setup is about 20
+minutes. There's no API key, no install, and no monthly cost beyond an existing Claude
+subscription.
+
+The architecture is intentionally narrow. The copilot will not write blog posts, draft
+client-facing emails, or run mass cold outreach — discipline is the moat. The wedge
+against raw ChatGPT is buyer–property fit ranking with reasoned friction (white space,
+per market research) and pricing memos with defensible comp logic.
+
+Four populated case-study markets ship with v2: Jerusalem (international-buyer wedge,
+bilingual), Novato/Marin County (universal-logic-without-foreign-hook proof), Khao Lak
+(resort, leasehold/freehold, multi-language), and Lisbon (mainstream urban European,
+post-Golden-Visa, multilingual).
+
+Repo: https://github.com/NFTYoginis/realtor-copilot-v2
+
+If a free-tools roundup, an open-source spotlight, or an "AI for solo agents" piece is in
+the pipeline, this is a clean fit. Happy to send a 1-pager or jump on a call.
+
+Best,
+[Your name]
+[Your email]
+[Your phone]</pre>
+  </div>
+</section>
+
+<!-- ===================== HousingWire ===================== -->
+<section class="pitch" id="housingwire">
+  <h2>Send 4 &nbsp;<span class="tag accent">HousingWire</span></h2>
+  <div class="pitch-meta">
+    <span><strong>Target:</strong> Sarah Wheeler, Editor-in-Chief (newsroom-routed)</span>
+  </div>
+
+  <div class="callout">
+    <strong>Path A (recommended):</strong> Submit via Submittable —
+    <a href="https://housingwire.submittable.com/submit" target="_blank" rel="noopener">housingwire.submittable.com/submit</a>.
+    Pick "Contributor Post." Use the title and body below.
+    <br><br>
+    <strong>Path B:</strong> News tip via newsroom contact —
+    <a href="https://www.housingwire.com/newsroom/" target="_blank" rel="noopener">housingwire.com/newsroom</a>.
+    Trim body to ~200 words, frame as "free open-source tool you may want to cover."
+  </div>
+
+  <div class="field-label">Subject
+    <button class="copy-btn" data-copy-target="hw-subject">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code short" id="hw-subject">Contributor Post — The Free, Open-Source AI Wedge Most Agents Don't Know About</pre>
+  </div>
+
+  <div class="field-label">Body
+    <button class="copy-btn" data-copy-target="hw-body">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code" id="hw-body">Hi Sarah and team,
+
+I'm a former residential real-estate practitioner who shipped a free, open-source AI tool
+for working agents this month. I'd like to pitch HousingWire — either as a contributor
+post (700 words on the architecture and distribution argument) or as a news tip on the
+broader free-tools-vs-CRMs trend.
+
+The angle is structural, not promotional: every paid AI-bundled CRM (Lofty $499–$1,500/mo,
+CINC $899+/mo, Follow Up Boss $58–$83/seat/mo, Top Producer, Rechat, kvCORE) prices in the
+$58–$1,500 range and gates AI assistance behind a sales cycle. The argument is that the
+scaffolding agents need is not data integration — it is prompt structure — and that does
+not need to be paywalled.
+
+Realtor Copilot is a folder of markdown files that drops into a Claude Project. About 20
+minutes to set up for the agent's local market. Five jobs: listings, buyer-fit ranking
+with reasoned friction, pricing memos with defensible comp logic, showing notes from
+dictation, and local-services lookup. Free. MIT licensed. Four populated case-study
+markets ship with it (Jerusalem, Novato/Marin, Khao Lak, Lisbon).
+
+The wedge against raw ChatGPT is buyer–property fit ranking and pricing memos with comp
+reasoning — both white-space areas in the competitive landscape per the 2025 NAR
+Technology Survey, which found 42% of agents use AI weekly but only 17% report
+significant impact.
+
+If a contributor post is the right path, I can have a 700-word piece in your inbox within
+a week. If it's a news mention, the repo and a 1-pager are ready to send.
+
+Repo: https://github.com/NFTYoginis/realtor-copilot-v2
+
+Best,
+[Your name]
+[Your email]
+[Your phone]
+[Your X / LinkedIn handle]</pre>
+  </div>
+</section>
+
+<!-- ===================== Inman ===================== -->
+<section class="pitch" id="inman">
+  <h2>Send 5 &nbsp;<span class="tag accent">Inman</span> &nbsp;<span class="tag">Recommended: wait for cold-test data</span></h2>
+  <div class="pitch-meta">
+    <span><strong>Primary target:</strong> Craig C. Rowe, Proptech / Tech Reporter</span>
+  </div>
+
+  <div class="callout">
+    <strong>Why wait 1–2 weeks:</strong> Inman's bar is the highest of the five. Craig Rowe's tech reviews work best with real-agent reactions, not just simulated tests. Send after the Jerusalem cold-test transcripts are in hand.
+    <br><br>
+    <strong>Path A (recommended):</strong> Inman Tip Line —
+    <a href="https://www.inman.com/tip-line/" target="_blank" rel="noopener">inman.com/tip-line</a>.
+    In the "what's the story" field, lead with: <em>"Free, open-source AI specialist for residential agents — for Craig Rowe / Tech Review consideration."</em>
+    <br><br>
+    <strong>Path B:</strong> Contributors program — <a href="mailto:contributors@inman.com">contributors@inman.com</a>.
+  </div>
+
+  <div class="field-label">Subject (Path B)
+    <button class="copy-btn" data-copy-target="inman-subject">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code short" id="inman-subject">Submission for tech review consideration — open-source AI specialist for agents</pre>
+  </div>
+
+  <div class="field-label">Body
+    <button class="copy-btn" data-copy-target="inman-body">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code" id="inman-body">Hi team — for Craig Rowe / proptech consideration,
+
+I'm a former residential real-estate practitioner who shipped an open-source AI tool for
+working agents this month. I'd like to pitch it to Inman — not for promotional coverage,
+but because it engages directly with findings from the 2025 NAR Technology Survey and
+Inman's own reporting on the AI-impact gap.
+
+NAR's data: 68% of agents have used AI; 42% weekly. Only 17% report significant positive
+impact. The friction Inman has covered — prompting skill, no integrated workflow, "agent
+vs. algorithm" credibility pressure — is exactly the gap the tool addresses.
+
+What it is. Realtor Copilot is a folder of structured markdown files that drops into a
+Claude Project. About 20 minutes to fill in six files describing your local market. The
+copilot then handles five jobs:
+
+  - Listing descriptions (audience-tuned, bilingual where needed)
+  - Buyer–property fit ranking with reasoned friction
+  - Pricing memos with defensible comp bands
+  - Showing notes from dictation (with cross-job memory — notes from this week cite into
+    matching/pricing next week)
+  - Local-services lookup from the agent's own curated vendor list
+
+Free. No install. No API key. No monthly fee beyond the agent's existing Claude
+subscription. MIT licensed. Four populated case-study markets ship with it: Jerusalem,
+Novato/Marin, Khao Lak, Lisbon — proves portability across very different regions.
+
+The wedge isn't features — it's the cost structure and the discipline. Every paid CRM
+($58–$1,500/mo) bundles an AI assistant. The audience here is the agent who's already
+typing into ChatGPT or Claude, knows it's not landing, and doesn't want to add a $500/mo
+CRM line item to fix it.
+
+Repos:
+  v2: https://github.com/NFTYoginis/realtor-copilot-v2
+  v1: https://github.com/NFTYoginis/realtor-copilot
+
+Happy to send a 2-minute walkthrough or get on a call if it's relevant for the next
+AI-in-real-estate piece.
+
+Best,
+[Your name]
+[Your email]
+[Your phone]
+[Your X / LinkedIn handle]</pre>
+  </div>
+
+  <div class="field-label">Optional add-in once cold-test data lands <span class="small" style="text-transform:none;letter-spacing:0;font-weight:400;">(insert between "Repos" line and closing)</span>
+    <button class="copy-btn" data-copy-target="inman-update">Copy</button>
+  </div>
+  <div class="copy-wrap">
+    <pre class="code" id="inman-update">Update — real-agent validation in hand. A practicing Jerusalem agent ran the v2
+deliverable on N current listings/buyers/pricings this past [week/two weeks].
+[Insert 2–3 lines of what they said worked or didn't.] Transcripts available
+on request.</pre>
+  </div>
+</section>
+
+<!-- ===================== Tracking ===================== -->
+<section class="block" id="tracking">
+  <h2>Tracking sheet</h2>
+  <p class="small">Copy into a Google Sheet, Notion table, or just a markdown file as you send.</p>
+  <table class="tracking">
+    <thead>
+      <tr>
+        <th>Outlet</th><th>Sent on</th><th>Channel</th><th>Confirmation?</th><th>Reply received?</th><th>Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Hacker News</td><td></td><td>post</td><td>n/a</td><td>n/a</td><td>(front-page? upvotes?)</td></tr>
+      <tr><td>The Lazy Agent</td><td></td><td>tommy@thelazyagent.com</td><td></td><td></td><td></td></tr>
+      <tr><td>RISMedia</td><td></td><td>maria@rismedia.com + online@</td><td></td><td></td><td></td></tr>
+      <tr><td>HousingWire</td><td></td><td>submittable / newsroom</td><td></td><td></td><td></td></tr>
+      <tr><td>Inman</td><td></td><td>tip-line OR contributors@</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== Sanity Rules ===================== -->
+<section class="block" id="rules">
+  <h2>Sanity rules</h2>
+  <ul class="rules">
+    <li><strong>Do not volume-pitch.</strong> These five are it. Adding more dilutes follow-up bandwidth and looks desperate.</li>
+    <li><strong>Wait 5–7 business days before any follow-up.</strong> Editors are buried. A week of silence is not a no.</li>
+    <li><strong>One follow-up max.</strong> If the second nudge gets nothing, move on. Submit a fresh pitch later when something material changes (cold-test data, new case study, traction numbers from HN).</li>
+    <li><strong>Be honest about validation status.</strong> If asked "have agents tested this?", the truthful answer right now is "v1 has a documented simulated cold-test and real-agent validation is in progress with two practicing agents — cold-test data should be in within 1–2 weeks." Don't oversell.</li>
+    <li><strong>Decline paid placement.</strong> Sponsored coverage will associate the project with a sales-y posture that contradicts the "discipline is the moat" framing.</li>
+    <li><strong>Keep follow-up signal short.</strong> "Following up on the pitch I sent on [date] — quick yes/no easy?" beats a re-pitched paragraph.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 style="font-size:16px;">What the AI cannot do for you</h2>
+  <ul class="rules small">
+    <li>Cannot send the emails or post to HN — that requires your email account, your byline, your HN account.</li>
+    <li>Can only prepare the materials so the send takes minutes, not hours.</li>
+    <li>The whole package above is paste-and-send. The hardest part is replacing the four placeholders globally.</li>
+  </ul>
+</section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const target = document.getElementById(btn.dataset.copyTarget);
+      if (!target) return;
+      const text = target.innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (err) {
+        // Fallback for older browsers / file:// contexts
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        document.body.removeChild(ta);
+      }
+      const original = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1600);
+    });
+  });
+</script>
+
+</body>
+</html>
