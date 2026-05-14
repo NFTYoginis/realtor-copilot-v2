@@ -35,7 +35,7 @@ This is *outreach material* — actual outreach is human-sent (you'll need a rea
 >
 > If you'd like a closer look, the repos are public:
 >
-> - v2: https://github.com/NFTYoginis/realtor-copilot-v2
+> - v2: https://github.com/NFTYoginis/your-market-realtor
 > - v1: https://github.com/NFTYoginis/realtor-copilot
 >
 > Happy to send a 2-minute walkthrough or get on a call if it's relevant for the next AI-in-real-estate piece.
@@ -64,7 +64,7 @@ This is *outreach material* — actual outreach is human-sent (you'll need a rea
 >
 > Three populated case-study markets ship with v2: Jerusalem (international-buyer wedge, bilingual), Novato/Marin County (universal-logic-without-foreign-hook proof), and Khao Lak (resort, leasehold/freehold, multi-language).
 >
-> Repo: https://github.com/NFTYoginis/realtor-copilot-v2
+> Repo: https://github.com/NFTYoginis/your-market-realtor
 >
 > If a free-tools roundup, an open-source spotlight, or an "AI for solo agents" piece is in the pipeline, this is a clean fit. Happy to send a walkthrough or a 1-pager.
 >
@@ -109,7 +109,7 @@ A former residential real-estate practitioner has released Realtor Copilot v2, a
 
 **Validation:** v1's six-test result file is documented as a *simulated* cold-test. Real-environment validation by two practicing agents (Jerusalem and Marin County) is the v2.1 priority and will be folded into universal files post-test.
 
-**Repos.** v2: github.com/NFTYoginis/realtor-copilot-v2 · v1: github.com/NFTYoginis/realtor-copilot
+**Repos.** v2: github.com/NFTYoginis/your-market-realtor · v1: github.com/NFTYoginis/realtor-copilot
 
 **License.** MIT — free to use, modify, share, and sell what you build with it.
 
@@ -159,7 +159,7 @@ Pitch template for newsletters:
 
 > Hi [name],
 >
-> Quick note in case it's a fit for [newsletter name]. I shipped a free, open-source AI specialist for residential real-estate agents — markdown files that drop into Claude, no install, five jobs, ~20 min setup. Built by a former practitioner. v2 just shipped at github.com/NFTYoginis/realtor-copilot-v2.
+> Quick note in case it's a fit for [newsletter name]. I shipped a free, open-source AI specialist for residential real-estate agents — markdown files that drop into Claude, no install, five jobs, ~20 min setup. Built by a former practitioner. v2 just shipped at github.com/NFTYoginis/your-market-realtor.
 >
 > If you cover free agent tools, ChatGPT-as-workflow tools, or open-source weekend projects, happy to send a 1-pager.
 >

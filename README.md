@@ -1,8 +1,8 @@
-# Realtor Copilot v2
+# Your Market Realtor
 
 **A free AI assistant for residential real-estate agents. Works inside Claude — no install, no API key, no monthly cost beyond your Claude subscription.**
 
-If you already type into ChatGPT or Claude for listings, comps, or buyer notes — and the answers feel generic — Realtor Copilot is the structured prompt scaffolding you've been missing. About 20 minutes to set up for your local market, then it's a chat away.
+If you already type into ChatGPT or Claude for listings, comps, or buyer notes — and the answers feel generic — Your Market Realtor is the structured prompt scaffolding you've been missing. About 20 minutes to set up for your local market, then it's a chat away.
 
 ---
 
@@ -52,7 +52,7 @@ Where ChatGPT is fine: short marketing blurbs, generic Q&A, idea brainstorming. 
 2. Click **"Download ZIP"**.
 3. Find the ZIP file in your Downloads folder and unzip it (double-click on Mac, right-click → Extract All on Windows).
 
-You should now have a folder called `realtor-copilot-v2-main` (or similar) containing `specialist/`, `case-studies/`, `docs/`, and a few other files.
+You should now have a folder called `your-market-realtor-main` (or similar) containing `specialist/`, `case-studies/`, `docs/`, and a few other files.
 
 ### Step 2 — Open the region folder
 

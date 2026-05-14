@@ -457,7 +457,7 @@ The audience is the 42% of agents already in ChatGPT/Claude weekly who report di
 ## 11. Author / contact
 
 - GitHub: [github.com/NFTYoginis](https://github.com/NFTYoginis)
-- Repos: [`realtor-copilot`](https://github.com/NFTYoginis/realtor-copilot) (v1) · [`realtor-copilot-v2`](https://github.com/NFTYoginis/realtor-copilot-v2) (v2)
+- Repos: [`realtor-copilot`](https://github.com/NFTYoginis/realtor-copilot) (v1) · [`your-market-realtor`](https://github.com/NFTYoginis/your-market-realtor) (v2)
 - License: MIT
 - Author background: former real-estate practitioner; built v2 informed by lived agent workflow.
 

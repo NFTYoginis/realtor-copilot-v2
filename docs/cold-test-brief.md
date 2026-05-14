@@ -20,7 +20,7 @@ That's it. Don't write a report. The transcripts + your one-paragraph reactions 
 
 ## Setup (about 20 minutes, one time)
 
-1. Go to [github.com/NFTYoginis/realtor-copilot-v2](https://github.com/NFTYoginis/realtor-copilot-v2)
+1. Go to [github.com/NFTYoginis/your-market-realtor](https://github.com/NFTYoginis/your-market-realtor)
 2. Click the green "Code" button → "Download ZIP". Unzip it.
 3. **Copy the populated case-study region into your specialist folder:**
    - **Jerusalem agent:** copy the contents of `case-studies/jerusalem/region/` into `specialist/reference/region/` (overwrite the placeholder files).
